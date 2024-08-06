@@ -21,6 +21,6 @@ public class Post {
     private String img;
     private Date date;
     private int likeCount;
-    private int voteCount;
+    private int viewCount;
     private List<String> tag;
 }
