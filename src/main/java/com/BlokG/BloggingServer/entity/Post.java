@@ -18,6 +18,7 @@ public class Post {
     @Column(length = 5000)
     private String content;
     private String postBy;
+    @Column(length = 5000)
     private String img;
     private Date date;
     private int likeCount;

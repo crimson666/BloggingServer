@@ -2,6 +2,7 @@ package com.BlokG.BloggingServer.contoller;
 
 import com.BlokG.BloggingServer.entity.Post;
 import com.BlokG.BloggingServer.service.PostService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,26 @@ public class PostController {
         try {
             Post post = postService.getPostById(postId);
             return ResponseEntity.ok(post);
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+    }
+
+    @PutMapping("/{postId}/like")
+    public ResponseEntity<?> likePost(@PathVariable Long postId){
+        try {
+            postService.likePost(postId);
+            return ResponseEntity.ok(new String[]{"Post Liked done!!"});
+        }catch (EntityNotFoundException ex){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<?> getByName(@PathVariable String name){
+        try {
+            List<Post> post = postService.findPostByName(name);
+            return ResponseEntity.status(HttpStatus.OK).body(post);
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
