@@ -9,18 +9,18 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: Checkout source
-        uses: action/chekout@v3
+        uses: actions/chekout@v3
       - name: Setup Java
-        uses: action/setup-java#v3
+        uses: actions/setup-java#v3
         with:
           distribution: 'temurin'
           java-version: '17'
       - name: Build Project
-        run: mvn clean install -DskipTest
+        run: mvn clean install -DskipTests
       - name: Login to docker hub
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p {{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
-        run : docker build -t houseofuchiha/bloggingserver .
+        run: docker build -t houseofuchiha/bloggingserver .
       - name: Publish image to docker
         run: docker push houseofuchiha/bloggingserver:latest
 
