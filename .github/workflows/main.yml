@@ -28,7 +28,7 @@ jobs:
     needs: build
     runs-on: [ubuntu-latest]
     steps:
-      - name: Pull the image from dockerhub
+      - name: Pull the image from dockerHub
         run: docker pull ankuruchiha/bloggingserver:latest
       - name: Delete old container
         run: docker rm -f bloggingWeb-container
