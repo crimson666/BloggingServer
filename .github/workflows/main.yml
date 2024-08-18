@@ -26,7 +26,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: [ubuntu-latest]
+    runs-on: tree1
     steps:
       - name: Pull the image from dockerHub
         run: docker pull ankuruchiha/bloggingserver:latest
