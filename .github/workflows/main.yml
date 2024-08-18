@@ -20,9 +20,9 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ankuruchiha -p Asura@1996
       - name: Build docker image
-        run: docker build -t houseofuchiha/bloggingserver .
+        run: docker build -t ankuruchiha/bloggingserver .
       - name: Publish image to docker
-        run: docker push houseofuchiha/bloggingserver:latest
+        run: docker push ankuruchiha/bloggingserver:latest
 
   deploy:
     needs: build
